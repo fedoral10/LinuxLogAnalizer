@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="LinuxLogAnalizer" namespace="LinuxLogAnalizer.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Passwd" table="passwd" lazy="true" >
+    <id name="idPasswd" >
+      <column name="id_passwd"/>
+      <generator class="sequence" />
+    </id>
+    <property name="usuario">
+      <column name="usuario" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="gid">
+      <column name="gid" sql-type="integer" not-null="false" />
+    </property>
+    <property name="home">
+      <column name="home" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="descripcion">
+      <column name="descripcion" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="password">
+      <column name="password" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="terminal">
+      <column name="terminal" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="uid">
+      <column name="uid" sql-type="integer" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

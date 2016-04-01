@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="LinuxLogAnalizer" namespace="LinuxLogAnalizer.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Secure" table="secure" lazy="true" >
+    <id name="idSecure" >
+      <column name="id_secure" />
+      <generator class="sequence" />
+    </id>
+    <property name="fechaHoraValue">
+      <column name="fecha_hora_value" sql-type="timestamp without time zone" not-null="false" />
+    </property>
+    <property name="procesoId">
+      <column name="proceso_id" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="fechaHora">
+      <column name="fecha_hora" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="hostname">
+      <column name="hostname" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="mensaje">
+      <column name="mensaje" sql-type="character varying" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

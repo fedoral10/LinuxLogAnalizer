@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="LinuxLogAnalizer" namespace="LinuxLogAnalizer.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Shadow" table="shadow" lazy="true" >
+    <id name="idShadow">
+      <column name="id_shadow" />
+      <generator class="sequence" />
+    </id>
+    <property name="usuario">
+      <column name="usuario" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="reservado">
+      <column name="reservado" sql-type="integer" not-null="false" />
+    </property>
+    <property name="inactive">
+      <column name="inactive" sql-type="integer" not-null="false" />
+    </property>
+    <property name="password">
+      <column name="password" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="lastPasswordChanged">
+      <column name="last_password_changed" sql-type="integer" not-null="false" />
+    </property>
+    <property name="maximo">
+      <column name="maximo" sql-type="integer" not-null="false" />
+    </property>
+    <property name="warning">
+      <column name="warning" sql-type="integer" not-null="false" />
+    </property>
+    <property name="minimo">
+      <column name="minimo" sql-type="integer" not-null="false" />
+    </property>
+    <property name="expire">
+      <column name="expire" sql-type="integer" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

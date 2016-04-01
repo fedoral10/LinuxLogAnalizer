@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="LinuxLogAnalizer" namespace="LinuxLogAnalizer.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Lastb" table="lastb" lazy="true" >
+    <id name="idLastb">
+      <column name ="id_lastb"/>
+      <generator class="sequence" />
+    </id>
+    <property name="fechaValue">
+      <column name="fecha_value" sql-type="timestamp without time zone" not-null="false" />
+    </property>
+    <property name="ip">
+      <column name="ip" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="username">
+      <column name="username" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="servicio">
+      <column name="servicio" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="tiempoConexion">
+      <column name="tiempo_conexion" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="fecha">
+      <column name="fecha" sql-type="character varying" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>
