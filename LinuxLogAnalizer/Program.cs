@@ -17,9 +17,11 @@ namespace LinuxLogAnalizer
         [STAThread]
         static void Main()
         {
+            log4net.Config.XmlConfigurator.Configure();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //NHelper.setConnectionString("postgres", "123", "linux", "localhost", "5432");
+            Application.Run(new frmLogin());
         }
         
     }

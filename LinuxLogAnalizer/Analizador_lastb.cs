@@ -22,6 +22,8 @@ namespace LinuxLogAnalizer
             clsRepo repo = new clsRepo();
             foreach (string linea in lista)
             {
+                commons.logger.Info("testing info");
+                commons.logger.Warn("testing warning");
                 Dominio.Lastb lastb = getLastbLine(linea);
                 if(lastb != null)
                     repo.Insertar<Dominio.Lastb>(lastb);

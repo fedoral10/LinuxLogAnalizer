@@ -1,13 +1,16 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace LinuxLogAnalizer
 {
     class commons
     {
+        public static ILog logger = LogManager.GetLogger("info");
         private static void read(string path)
         {
             FileStream f = new FileStream(path, FileMode.Open);
@@ -51,6 +54,41 @@ namespace LinuxLogAnalizer
         public static string[] leerArchivoArray(string filename)
         {
             return File.ReadAllLines(filename);
+        }
+
+        public static List<string> showOpenFile(string filtro, bool multiselect)
+        {
+            List<string> retorno = null;
+
+            OpenFileDialog fl = new OpenFileDialog();
+
+            fl.Filter = filtro;
+            fl.Multiselect = multiselect;
+            if (fl.ShowDialog() == DialogResult.OK)
+            { 
+                retorno = fl.FileNames.ToList<string>();
+            }
+
+            return retorno;
+        }
+        public static void execAnalizador<T>()where T:Analizador
+        {
+            List<string> archivos = commons.showOpenFile("Todos los Archivos(*.*)|*.*", true);
+            if (archivos != null)
+            {
+                foreach (string archivo in archivos)
+                {
+                    Analizador a = (T)Activator.CreateInstance(typeof(T), archivo);
+                    a.insertarEnDB();
+                }
+            }
+        }
+
+        public static void insertarPanel(Control panel_origen, Control panel_destino)
+        {
+            panel_destino.Controls.Clear();
+            //Paneles.panelArchLogs p = new Paneles.panelArchLogs();
+            panel_destino.Controls.Add(panel_origen);
         }
     }
 }

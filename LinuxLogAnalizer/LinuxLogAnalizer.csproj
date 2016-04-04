@@ -57,6 +57,10 @@
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ADReports\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
@@ -85,20 +89,60 @@
     <Compile Include="Analizador_shadow.cs" />
     <Compile Include="clsRepo.cs" />
     <Compile Include="commons.cs" />
-    <Compile Include="Dominio\Group.cs" />
+    <Compile Include="Dominio\Entidad.cs" />
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs" />
     <Compile Include="Dominio\Lastb.cs" />
     <Compile Include="Dominio\Passwd.cs" />
     <Compile Include="Dominio\Secure.cs" />
     <Compile Include="Dominio\Shadow.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="NHelper.cs" />
+    <Compile Include="Paneles\panelArchLogs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Paneles\panelArchLogs.Designer.cs">
+      <DependentUpon>panelArchLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\panelCatalogo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Paneles\panelCatalogo.Designer.cs">
+      <DependentUpon>panelCatalogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\panelReportes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Paneles\panelReportes.Designer.cs">
+      <DependentUpon>panelReportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\panelArchLogs.resx">
+      <DependentUpon>panelArchLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\panelCatalogo.resx">
+      <DependentUpon>panelCatalogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\panelReportes.resx">
+      <DependentUpon>panelReportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -121,7 +165,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Map\Entidad.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
@@ -160,6 +208,18 @@
     <EmbeddedResource Include="Map\shadow.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1459199811_connect_established.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userconfig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ADSI\ADSI\ADSI.csproj">
+      <Project>{08172131-8b29-4fd6-85b1-f2b3ed9a0286}</Project>
+      <Name>ADSI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

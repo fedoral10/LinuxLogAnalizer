@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinuxLogAnalizer", "LinuxLogAnalizer\LinuxLogAnalizer.csproj", "{F2D0D657-494F-424F-9D4A-41AE5BDBDCEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADSI", "..\ADSI\ADSI\ADSI.csproj", "{08172131-8B29-4FD6-85B1-F2B3ED9A0286}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F2D0D657-494F-424F-9D4A-41AE5BDBDCEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2D0D657-494F-424F-9D4A-41AE5BDBDCEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2D0D657-494F-424F-9D4A-41AE5BDBDCEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08172131-8B29-4FD6-85B1-F2B3ED9A0286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08172131-8B29-4FD6-85B1-F2B3ED9A0286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08172131-8B29-4FD6-85B1-F2B3ED9A0286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08172131-8B29-4FD6-85B1-F2B3ED9A0286}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
