@@ -96,7 +96,7 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Group.cs" />
+    <Compile Include="Dominio\Group.cs" />
     <Compile Include="Dominio\Lastb.cs" />
     <Compile Include="Dominio\Passwd.cs" />
     <Compile Include="Dominio\Secure.cs" />

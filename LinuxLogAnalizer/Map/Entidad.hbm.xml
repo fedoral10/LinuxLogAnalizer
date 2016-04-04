@@ -75,8 +75,12 @@ public virtual string distinguishedname { get; set; }
       <property name="whenChangedDT" type="datetime">
         <column name ="whenChangedDT"/>
       </property>
-          <property name="pwdLastSetDT" type="datetime">
+      <property name="pwdLastSetDT" type="datetime">
         <column name ="pwdLastSetDT"/>
+      </property>
+
+      <property name="IP" type="string">
+        <column name ="ip"/>
       </property>
     </class>
 </hibernate-mapping>

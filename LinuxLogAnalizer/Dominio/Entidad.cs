@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 namespace LinuxLogAnalizer.Dominio
 {
-    
     public class Entidad {
         public virtual long idEntidad { get; set; }
         public virtual string department { get; set; }
@@ -29,6 +28,7 @@ namespace LinuxLogAnalizer.Dominio
         public virtual DateTime whenCreatedDT { get; set; }
         public virtual DateTime whenChangedDT { get; set; }
         public virtual DateTime pwdLastSetDT { get; set; }
+        public virtual string IP { get; set; }
 
         public override bool Equals(object obj)
         {
