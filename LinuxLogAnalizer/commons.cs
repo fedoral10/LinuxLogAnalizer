@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LinuxLogAnalizer
@@ -11,6 +13,13 @@ namespace LinuxLogAnalizer
     class commons
     {
         public static ILog logger = LogManager.GetLogger("info");
+        private static Form _frmPadre;
+
+        public static void setFormPadre(Form frm)
+        {
+            _frmPadre = frm;
+        }
+
         private static void read(string path)
         {
             FileStream f = new FileStream(path, FileMode.Open);
@@ -71,16 +80,42 @@ namespace LinuxLogAnalizer
 
             return retorno;
         }
-        public static void execAnalizador<T>()where T:Analizador
+        public static void execAnalizador<T>(frmWait wait)where T:Analizador
         {
             List<string> archivos = commons.showOpenFile("Todos los Archivos(*.*)|*.*", true);
             if (archivos != null)
             {
-                foreach (string archivo in archivos)
+                Task t = Task.Run(() =>
                 {
-                    Analizador a = (T)Activator.CreateInstance(typeof(T), archivo);
-                    a.insertarEnDB();
-                }
+                    _frmPadre.Invoke((MethodInvoker)delegate
+                    {
+                        _frmPadre.Enabled = false;
+                        _frmPadre.UseWaitCursor = true;
+                    });
+                    wait.Invoke((MethodInvoker)delegate
+                    {
+                        wait.label1.Text ="Por favor espere..."; // runs on UI thread
+                    });
+                    foreach (string archivo in archivos)
+                    {
+                        Analizador a = (T)Activator.CreateInstance(typeof(T), archivo);
+                        a.insertarEnDB();
+                    }
+                });
+                wait.Show();
+                t.ContinueWith( a => {
+                    wait.Invoke((MethodInvoker)delegate
+                    {
+                        wait.Hide(); // runs on UI thread
+                    });
+                    _frmPadre.Invoke((MethodInvoker)delegate
+                    {
+                        _frmPadre.Enabled = true;
+                        _frmPadre.UseWaitCursor = false;
+                    });
+                });
+                
+                
             }
         }
 

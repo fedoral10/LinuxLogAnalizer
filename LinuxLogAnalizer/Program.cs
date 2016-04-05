@@ -21,6 +21,7 @@ namespace LinuxLogAnalizer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //NHelper.setConnectionString("postgres", "123", "linux", "localhost", "5432");
+            //Application.Run(new frmWait());
             Application.Run(new frmLogin());
         }
         

@@ -33,13 +33,13 @@ namespace LinuxLogAnalizer
             string[] arreglo = line.Split(':');
             retorno.usuario = arreglo[0];
             retorno.password = arreglo[1];
-            retorno.lastPasswordChanged = int.Parse(arreglo[2]);
-            retorno.minimo = int.Parse(arreglo[3]);
-            retorno.maximo = int.Parse(arreglo[4]);
-            retorno.warning = int.Parse(arreglo[5]);
-            retorno.inactive = int.Parse(arreglo[6]);
-            retorno.expire = int.Parse(arreglo[7]);
-            retorno.reservado = int.Parse(arreglo[8]);
+            retorno.lastPasswordChanged = string.IsNullOrEmpty(arreglo[2])?0: int.Parse(arreglo[2]);
+            retorno.minimo = string.IsNullOrEmpty(arreglo[3])?0:int.Parse(arreglo[3]);
+            retorno.maximo = string.IsNullOrEmpty(arreglo[4])?0:int.Parse(arreglo[4]);
+            retorno.warning = string.IsNullOrEmpty(arreglo[5])?0:int.Parse(arreglo[5]);
+            retorno.inactive = string.IsNullOrEmpty(arreglo[6])?0:int.Parse(arreglo[6]);
+            retorno.expire = string.IsNullOrEmpty(arreglo[7])?0:int.Parse(arreglo[7]);
+            retorno.reservado = string.IsNullOrEmpty(arreglo[8])?0:int.Parse(arreglo[8]);
 
             return retorno;
         }

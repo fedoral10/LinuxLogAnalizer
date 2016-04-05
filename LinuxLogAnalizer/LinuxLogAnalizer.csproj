@@ -62,8 +62,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ADReports\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Npgsql, Version=3.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.3.0.5\lib\net45\Npgsql.dll</HintPath>
@@ -90,6 +90,7 @@
     <Compile Include="clsRepo.cs" />
     <Compile Include="commons.cs" />
     <Compile Include="Dominio\Entidad.cs" />
+    <Compile Include="Excel\UsuarioExcel.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +107,12 @@
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWait.Designer.cs">
+      <DependentUpon>frmWait.cs</DependentUpon>
     </Compile>
     <Compile Include="NHelper.cs" />
     <Compile Include="Paneles\panelArchLogs.cs">
@@ -133,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWait.resx">
+      <DependentUpon>frmWait.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Paneles\panelArchLogs.resx">
       <DependentUpon>panelArchLogs.cs</DependentUpon>
@@ -216,10 +226,17 @@
     <None Include="Resources\userconfig.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\SimpleExcelImport\SimpleExcelImport\SimpleExcelImport.csproj">
+      <Project>{b64234a1-5b22-4eb1-8d0f-1edb67aa8342}</Project>
+      <Name>SimpleExcelImport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ADSI\ADSI\ADSI.csproj">
       <Project>{08172131-8b29-4fd6-85b1-f2b3ed9a0286}</Project>
       <Name>ADSI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\default.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

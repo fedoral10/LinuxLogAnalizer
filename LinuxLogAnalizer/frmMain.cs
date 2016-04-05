@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LinuxLogAnalizer
@@ -23,7 +24,7 @@ namespace LinuxLogAnalizer
             //Analizador a = new Analizador_secure(@"C:\Users\njn04571\Desktop\VBox\secure");
             //NHelper.setConnectionString("postgres", "123", "linux", "localhost", "5432");
             //a.insertarEnDB();
-
+            commons.setFormPadre(this);
         }
 
         private void archivosDeLogToolStripMenuItem_Click(object sender, EventArgs e)
