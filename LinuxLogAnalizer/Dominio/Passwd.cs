@@ -14,5 +14,6 @@ namespace LinuxLogAnalizer.Dominio {
         public virtual string password { get; set; }
         public virtual string terminal { get; set; }
         public virtual int? uid { get; set; }
+        public virtual Revision revision { get; set; }
     }
 }

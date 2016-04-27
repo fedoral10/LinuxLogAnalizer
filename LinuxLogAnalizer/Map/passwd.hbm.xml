@@ -26,5 +26,6 @@
     <property name="uid">
       <column name="uid" sql-type="integer" not-null="false" />
     </property>
+    <many-to-one name="revision" class="Revision" column ="id_Revision" />
   </class>
 </hibernate-mapping>

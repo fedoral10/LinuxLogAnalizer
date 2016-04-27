@@ -11,5 +11,6 @@ namespace LinuxLogAnalizer.Dominio {
         public virtual string groupName { get; set; }
         public virtual string password { get; set; }
         public virtual string userList { get; set; }
+        public virtual Revision revision { get; set; }
     }
 }

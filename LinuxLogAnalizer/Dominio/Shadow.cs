@@ -16,5 +16,6 @@ namespace LinuxLogAnalizer.Dominio {
         public virtual int? warning { get; set; }
         public virtual int? minimo { get; set; }
         public virtual int? expire { get; set; }
+        public virtual Revision revision { get; set; }
     }
 }

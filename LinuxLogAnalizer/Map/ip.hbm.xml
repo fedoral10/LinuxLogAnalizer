@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="LinuxLogAnalizer" namespace="LinuxLogAnalizer.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Ip" table="ip" lazy="true" >
+    <id name="idIp"  type="long" >
+      <column name="id_Ip"/>
+      <generator class="sequence" />
+    </id>
+    <property name="ip">
+      <column name="ip" sql-type="character varying" not-null="true" />
+    </property>
+    <property name="descripcion">
+      <column name="descripcion" sql-type="character varying" not-null="false" />
+    </property>
+    <property name="samaccountname">
+      <column name="samaccountname" sql-type="character varying" not-null="false" />
+    </property>
+    
+  </class>
+</hibernate-mapping>

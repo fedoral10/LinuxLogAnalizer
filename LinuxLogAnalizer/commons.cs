@@ -12,6 +12,11 @@ namespace LinuxLogAnalizer
 {
     class commons
     {
+
+        //private Dominio.Revision _revision;
+
+        public static Dominio.Revision Revision_Actual { get; set; }
+
         public static ILog logger = LogManager.GetLogger("info");
         private static Form _frmPadre;
 
@@ -124,6 +129,15 @@ namespace LinuxLogAnalizer
             panel_destino.Controls.Clear();
             //Paneles.panelArchLogs p = new Paneles.panelArchLogs();
             panel_destino.Controls.Add(panel_origen);
+        }
+
+        public static void mensajeInformativo(string texto, string titulo)
+        {
+            MessageBox.Show(texto, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public static void mensajeError(string texto, string titulo)
+        {
+            MessageBox.Show(texto, titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

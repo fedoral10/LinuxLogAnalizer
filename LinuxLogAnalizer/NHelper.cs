@@ -14,6 +14,8 @@ namespace LinuxLogAnalizer
 
             private static string connection_string;
 
+            public static string BaseDatos { get; set; }
+
             public static int createDatabase(string user, string pass,string dbname, string host, string port)
             {
                 string texto = "Server={0};Port={1};user id={2};password={3}";
@@ -37,8 +39,9 @@ namespace LinuxLogAnalizer
 
             public static void setConnectionString(string user, string pass, string db, string host, string port)
             {
-                string texto = "Server={0};Port={1};database={2};user id={3};password={4}";
+                string texto = "Server={0};Port={1};database={2};user id={3};password={4};timeout=1000;";
                 connection_string = String.Format(texto, host, port, db, user, pass);
+                BaseDatos = db;
             }
 
             private static void ExportarEsquema(Configuration cfg)

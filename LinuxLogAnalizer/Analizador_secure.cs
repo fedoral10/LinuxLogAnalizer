@@ -21,12 +21,12 @@ namespace LinuxLogAnalizer
         {
             var lista = this.leerArchivo(_filename);
             clsRepo repo = new clsRepo();
-            foreach (string linea in lista)
+            Parallel.ForEach<string>(lista,linea =>
             {
                 Dominio.Secure secure = getSecureLine(linea);
                 if(secure!=null)
                     repo.Insertar<Dominio.Secure>(secure);
-            }
+            });
         }
         public Dominio.Secure getSecureLine(string line)
         {
@@ -43,7 +43,7 @@ namespace LinuxLogAnalizer
             {
                 retorno = new Dominio.Secure();
                 linea_trabajada = line;
-
+                retorno.revision = commons.Revision_Actual;
                 if (Regex.IsMatch(line, "[A-Z][a-z]{2} {1,2}[0-9]{1,2} ([0-9]{2}:){2}[0-9]{2}"))
                     retorno.fechaHora = linea_trabajada.Substring(0, 15);
                 else

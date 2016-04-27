@@ -20,5 +20,6 @@
     <property name="mensaje">
       <column name="mensaje" sql-type="character varying" not-null="false" />
     </property>
+    <many-to-one name="revision" class="Revision" column ="id_Revision" />
   </class>
 </hibernate-mapping>

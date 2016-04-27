@@ -32,5 +32,6 @@
     <property name="expire">
       <column name="expire" sql-type="integer" not-null="false" />
     </property>
+    <many-to-one name="revision" class="Revision" column ="id_Revision" />
   </class>
 </hibernate-mapping>

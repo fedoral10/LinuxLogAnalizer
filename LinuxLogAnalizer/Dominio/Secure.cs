@@ -12,5 +12,6 @@ namespace LinuxLogAnalizer.Dominio {
         public virtual string fechaHora { get; set; }
         public virtual string hostname { get; set; }
         public virtual string mensaje { get; set; }
+        public virtual Revision revision { get; set; }
     }
 }

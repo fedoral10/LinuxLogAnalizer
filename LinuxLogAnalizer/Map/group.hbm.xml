@@ -17,5 +17,6 @@
     <property name="userList">
       <column name="user_list" sql-type="character varying" not-null="false" />
     </property>
+    <many-to-one name="revision" class="Revision" column ="id_Revision" />
   </class>
 </hibernate-mapping>

@@ -29,7 +29,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -37,7 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -90,7 +90,22 @@
     <Compile Include="clsRepo.cs" />
     <Compile Include="commons.cs" />
     <Compile Include="Dominio\Entidad.cs" />
+    <Compile Include="Dominio\Ip.cs" />
+    <Compile Include="Dominio\Revision.cs" />
+    <Compile Include="Excel\Ip.cs" />
     <Compile Include="Excel\UsuarioExcel.cs" />
+    <Compile Include="Forms\frmAddIp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddIp.Designer.cs">
+      <DependentUpon>frmAddIp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBaseTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBaseTool.Designer.cs">
+      <DependentUpon>frmBaseTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +150,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\frmAddIp.resx">
+      <DependentUpon>frmAddIp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBaseTool.resx">
+      <DependentUpon>frmBaseTool.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,9 +197,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Map\Entidad.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Map\Entidad.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -203,21 +222,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Map\group.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Map\lastb.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Map\passwd.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Map\secure.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Map\shadow.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Map\group.hbm.xml" />
+    <EmbeddedResource Include="Map\lastb.hbm.xml" />
+    <EmbeddedResource Include="Map\passwd.hbm.xml" />
+    <EmbeddedResource Include="Map\secure.hbm.xml" />
+    <EmbeddedResource Include="Map\shadow.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1459199811_connect_established.png" />
@@ -234,9 +243,25 @@
       <Project>{08172131-8b29-4fd6-85b1-f2b3ed9a0286}</Project>
       <Name>ADSI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ExcelReporter\ExcelReporter\ExcelReporter.csproj">
+      <Project>{2a7834ab-a9a2-4816-8917-4b05c78a3899}</Project>
+      <Name>ExcelReporter</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Map\ip.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Map\revision.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1448573814_view-refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-refresh32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

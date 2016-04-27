@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LinuxLogAnalizer.Excel
 {
-    class UsuarioExcel
+    class  UsuarioExcel
     {
         [ExcelImport("ID", order = 1)]
         public string ID { get; set; }

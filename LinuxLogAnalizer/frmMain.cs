@@ -16,8 +16,6 @@ namespace LinuxLogAnalizer
         {
             InitializeComponent();
 
-
-
             //Analizador a = new Analizador_passwd(@"C:\Users\njn04571\Desktop\VBox\passwd");
             //Analizador a = new Analizador_lastb(@"C:\Users\njn04571\Desktop\VBox\lastb.txt");
             //Analizador a = new Analizador_secure(@"C:\Users\njn04571\Desktop\VBox\secure.txt");
@@ -25,6 +23,7 @@ namespace LinuxLogAnalizer
             //NHelper.setConnectionString("postgres", "123", "linux", "localhost", "5432");
             //a.insertarEnDB();
             commons.setFormPadre(this);
+            this.StatusBarLabel.Text = "Base de Datos: " + NHelper.BaseDatos + " | Revision: "+commons.Revision_Actual.ToString(); 
         }
 
         private void archivosDeLogToolStripMenuItem_Click(object sender, EventArgs e)

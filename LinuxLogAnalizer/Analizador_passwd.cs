@@ -22,21 +22,30 @@ namespace LinuxLogAnalizer
             foreach (string linea in lista)
             { 
                 Dominio.Passwd passwd = getPasswdLine(linea);
-                repo.Insertar<Dominio.Passwd>(passwd);
+                if(passwd != null)
+                    repo.Insertar<Dominio.Passwd>(passwd);
             }
         }
 
         public Dominio.Passwd getPasswdLine(string line) {
-            Dominio.Passwd retorno = new Dominio.Passwd();
+            Dominio.Passwd retorno = null;
 
+            
             string[] arreglo = line.Split(':');
-            retorno.usuario = arreglo[0];
-            retorno.password = arreglo[1];
-            retorno.uid = int.Parse(arreglo[2]);
-            retorno.gid = int.Parse(arreglo[3]);
-            retorno.descripcion = arreglo[4];
-            retorno.home = arreglo[5];
-            retorno.terminal = arreglo[6];
+            if (arreglo != null)
+            {
+                if (arreglo.Length == 7)
+                {
+                    retorno = new Dominio.Passwd();
+                    retorno.usuario = arreglo[0];
+                    retorno.password = arreglo[1];
+                    retorno.uid = int.Parse(arreglo[2]);
+                    retorno.gid = int.Parse(arreglo[3]);
+                    retorno.descripcion = arreglo[4];
+                    retorno.home = arreglo[5];
+                    retorno.terminal = arreglo[6];
+                }
+            }
 
             return retorno;
         }

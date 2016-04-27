@@ -17,12 +17,25 @@ namespace LinuxLogAnalizer
         [STAThread]
         static void Main()
         {
-            log4net.Config.XmlConfigurator.Configure();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            //NHelper.setConnectionString("postgres", "123", "linux", "localhost", "5432");
-            //Application.Run(new frmWait());
-            Application.Run(new frmLogin());
+            try
+            {
+                log4net.Config.XmlConfigurator.Configure();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                //NHelper.setConnectionString("postgres", "123", "linux", "localhost", "5432");
+                //Application.Run(new frmWait());
+                Application.Run(new frmLogin());
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                while (ex != null)
+                { 
+                    mensaje = mensaje +"##"+ ex.Message+"\n";
+                    ex = ex.InnerException;
+                }
+                System.Windows.Forms.MessageBox.Show(mensaje, "Error");
+            }
         }
         
     }

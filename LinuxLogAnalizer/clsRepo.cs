@@ -30,6 +30,7 @@ namespace LinuxLogAnalizer
             catch (Exception e)
             {
                 Console.WriteLine("Error: " + e.Message);
+                throw e;
             }
         }
         public void Eliminar<TClase>(TClase Objeto)

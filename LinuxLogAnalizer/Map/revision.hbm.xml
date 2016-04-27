@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="LinuxLogAnalizer" namespace="LinuxLogAnalizer.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Revision" table="revision" lazy="true" >
+    <id name="idRevision"  type="long" >
+      <column name="id_Revision"/>
+      <generator class="sequence" />
+    </id>
+    <property name="descripcion">
+      <column name="descripcion" sql-type="character varying" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

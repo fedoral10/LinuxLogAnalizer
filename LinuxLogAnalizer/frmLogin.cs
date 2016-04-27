@@ -17,6 +17,7 @@ namespace LinuxLogAnalizer
         public frmLogin()
         {
             InitializeComponent();
+            this.txtDescripcion.Enabled = false;
         }
         /*
          * OU=TCN,DC=TCN,DC=COM,DC=NI
@@ -32,18 +33,42 @@ namespace LinuxLogAnalizer
 
         private void btnConectar_Click(object sender, EventArgs e)
         {
-
-            NHelper.setConnectionString(this.txtUser.Text, txtPassword.Text,"linux", txtServer.Text, txtPort.Value.ToString());
+            NHelper.setConnectionString(this.txtUser.Text, txtPassword.Text,txtDB.Text, txtServer.Text, txtPort.Value.ToString());
             try
             {
                 using (ISession session = NHelper.OpenSession())
                 {
+                    /*Crear revision*/
+                    if (chkCrearRevision.Checked)
+                    {
+                        clsRepo repo = new clsRepo();
+                        Dominio.Revision rev = new Dominio.Revision();
+
+                        rev.descripcion = txtDescripcion.Text;
+
+                        repo.Insertar<Dominio.Revision>(rev);
+                        commons.Revision_Actual = rev;
+                    }
+                    else
+                    { 
+                        /*Usa revision ya hecha*/
+
+                        if (cmbRevision.Items.Count > 0)//si se selecciono una revision
+                        {
+                            commons.Revision_Actual = (Dominio.Revision)cmbRevision.SelectedItem;
+                        }
+                        else
+                        {
+                            commons.mensajeInformativo("Seleccione una revision o cree una nueva", this.Text);
+                            return;
+                        }
+
+                    }
+
+
                     /*Prueba de conexion*/
                     this.Visible = false;
-                    //clsRepo repo = new clsRepo();
-                    //Dominio.Entidad ent =repo.getEntidadfromIDAD("NJN04571");
-                    //Dominio.EntidadAplicacion ea = repo.getEntidadAppValue("NJN04571", 5);
-                    //Dominio.Aplicacion ap = repo.getApplicacion("LINUX");
+
                     frmMain i = new frmMain();
                     i.ShowDialog();
 
@@ -52,7 +77,13 @@ namespace LinuxLogAnalizer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string mensaje = "";
+                while (ex != null)
+                {
+                    mensaje = mensaje + "##" + ex.Message + "\n";
+                    ex = ex.InnerException;
+                }
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -78,7 +109,38 @@ namespace LinuxLogAnalizer
             usr.ShowDialog();
         }
 
+        private void chkCrearRevision_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCrearRevision.Checked)
+                this.txtDescripcion.Enabled = true;
+            else
+                this.txtDescripcion.Enabled = false;
+        }
 
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            NHelper.setConnectionString(this.txtUser.Text, txtPassword.Text, txtDB.Text, txtServer.Text, txtPort.Value.ToString());
+            clsRepo repo = new clsRepo();
+            try
+            {
+                IList<Dominio.Revision> lista = repo.Seleccionar<Dominio.Revision>();
+                if(lista != null)
+                    foreach (Dominio.Revision r in lista)
+                    {
+                        cmbRevision.Items.Add(r);
+                    }
+            }
+            catch (Exception ex)
+            {
+                commons.mensajeError(ex.Message, this.Text);
+            }
+            if (cmbRevision.Items.Count > 0)
+            {
+                cmbRevision.SelectedIndex = 0;
+            }
+        }
+
+        
 
     }
 }
