@@ -18,6 +18,34 @@ namespace LinuxLogAnalizer
         {
             InitializeComponent();
             this.txtDescripcion.Enabled = false;
+            setConfigOnGUI();
+        }
+
+        private void setConfigOnGUI()
+        { 
+            Config.ConfigGlobal cfg = commons.readConfig();
+            this.txtDB.Text = cfg.db;
+            this.txtPassword.Text = cfg.GetPassword();
+            this.txtUser.Text = cfg.usuario;
+            this.txtServer.Text = cfg.host;
+            try
+            {
+                txtPort.Value = int.Parse(cfg.puerto);
+            }
+            catch
+            {
+                txtPort.Value = 5432;
+            }
+        }
+        private void writeConfigOfGUI()
+        {
+            commons.Configuracion.db = this.txtDB.Text;
+            commons.Configuracion.SetPassword(this.txtPassword.Text);
+            commons.Configuracion.usuario = this.txtUser.Text;
+            commons.Configuracion.host = this.txtServer.Text;
+            commons.Configuracion.puerto = this.txtPort.Value.ToString();
+
+            commons.writeConfig();
         }
         /*
          * OU=TCN,DC=TCN,DC=COM,DC=NI
@@ -65,7 +93,7 @@ namespace LinuxLogAnalizer
 
                     }
 
-
+                    writeConfigOfGUI();
                     /*Prueba de conexion*/
                     this.Visible = false;
 

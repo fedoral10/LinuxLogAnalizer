@@ -89,6 +89,8 @@
     <Compile Include="Analizador_shadow.cs" />
     <Compile Include="clsRepo.cs" />
     <Compile Include="commons.cs" />
+    <Compile Include="Config\ConfigGlobal.cs" />
+    <Compile Include="Config\Reporte.cs" />
     <Compile Include="Dominio\Entidad.cs" />
     <Compile Include="Dominio\Ip.cs" />
     <Compile Include="Dominio\Revision.cs" />
@@ -150,6 +152,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializador.cs" />
+    <Compile Include="StringCipher.cs" />
     <EmbeddedResource Include="Forms\frmAddIp.resx">
       <DependentUpon>frmAddIp.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +267,7 @@
   <ItemGroup>
     <None Include="Resources\view-refresh32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
