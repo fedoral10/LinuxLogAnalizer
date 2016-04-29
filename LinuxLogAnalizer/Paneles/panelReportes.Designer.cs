@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbConReport = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnGenerar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbConReport = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,14 +49,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Revision de Conexiones";
             // 
-            // cmbConReport
+            // btnGenerar
             // 
-            this.cmbConReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConReport.FormattingEnabled = true;
-            this.cmbConReport.Location = new System.Drawing.Point(61, 24);
-            this.cmbConReport.Name = "cmbConReport";
-            this.cmbConReport.Size = new System.Drawing.Size(121, 21);
-            this.cmbConReport.TabIndex = 0;
+            this.btnGenerar.Location = new System.Drawing.Point(360, 51);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerar.TabIndex = 2;
+            this.btnGenerar.Text = "Generar";
+            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
             // label1
             // 
@@ -67,14 +68,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Reporte:";
             // 
-            // btnGenerar
+            // cmbConReport
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(188, 24);
-            this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerar.TabIndex = 2;
-            this.btnGenerar.Text = "Generar";
-            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.cmbConReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConReport.FormattingEnabled = true;
+            this.cmbConReport.Location = new System.Drawing.Point(61, 24);
+            this.cmbConReport.Name = "cmbConReport";
+            this.cmbConReport.Size = new System.Drawing.Size(374, 21);
+            this.cmbConReport.TabIndex = 0;
             // 
             // panelReportes
             // 

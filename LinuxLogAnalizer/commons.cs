@@ -174,7 +174,16 @@ namespace LinuxLogAnalizer
             Reporte[] rpts= new Reporte[3];
             rpts[0] = new Reporte();
             rpts[0].Nombre = "Conexiones Únicas(lastb)";
-            rpts[0].SQL = "select lb.username,lb.servicio,lb.ip from lastb";
+            rpts[0].SQL = "select distinct lb.username, " +
+            "case when left(lb.servicio,3) = 'pts' then 'pts' else lb.servicio end, "+
+            "lb.ip, " +
+            "(select description from ip i "+
+            "inner join entidad e on i.samaccountname = e.samaccountname "+
+            "where i.ip = lb.ip) as nombre, " + 
+            "(select department from ip i "+
+            "inner join entidad e on i.samaccountname = e.samaccountname "+
+            "where i.ip = lb.ip) as area "+
+            "from lastb lb";
 
             rpts[1] = new Reporte();
             rpts[1].Nombre = "Conexiones Exitosas(lastb,ip)";
@@ -183,64 +192,64 @@ namespace LinuxLogAnalizer
             "where i.ip = lb.ip limit 1) as id, " +
             " (select cn from ip i "+
             "inner join entidad e on i.samaccountname = e.samaccountname "+ 
-            "where i.ip = lb.ip limit 1) as nombre,"+
-            " (select description from ip i"+
-            "inner join entidad e on i.samaccountname = e.samaccountname"+
-            "where i.ip = lb.ip limit 1) as description,"+
+            "where i.ip = lb.ip limit 1) as nombre, "+
+            " (select description from ip i "+
+            "inner join entidad e on i.samaccountname = e.samaccountname "+
+            "where i.ip = lb.ip limit 1) as description, "+
             " (select department from ip i "+
-            " inner join entidad e on i.samaccountname = e.samaccountname"+
-            "where i.ip = lb.ip limit 1) as area"+
+            " inner join entidad e on i.samaccountname = e.samaccountname "+
+            "where i.ip = lb.ip limit 1) as area "+
             " from ( "+
             "select distinct lb.username, "+
             "case when left(lb.servicio,3) = 'pts' then 'pts' else lb.servicio end, "+
             "lb.ip "+ 
             "from lastb lb "+
-            ") lb";
+            ") lb ";
 
             rpts[2] = new Reporte();
             rpts[2].Nombre = "Conexiones Fallidas(secure)";
             rpts[2].SQL = 
-"/* new versiom sql punto 3******/"+
-"select nconex,id_conexion,ip,cadena_conex,"+
-"(select cn from ip i"+
-"inner join entidad e on i.samaccountname = e.samaccountname"+
-"where i.ip = lb.ip limit 1) as nombre,"+
-" (select description from ip i"+
-"inner join entidad e on i.samaccountname = e.samaccountname"+
-"where i.ip = lb.ip limit 1) as description,"+
-" (select department from ip i"+
-"inner join entidad e on i.samaccountname = e.samaccountname"+
-"where i.ip = lb.ip limit 1) as area"+
-"from ("+
-	"/*shh*/"+
-	"select "+
-	"count(*) as nconex,"+
-	"id_conexion,"+
-	"ip,cadena_conex from ("+
-	"select mensaje,"+
-	"replace(replace(cast(regexp_matches(mensaje,'for.*from') as text),'{\"for ',''),' from\"}','') as id_conexion,"+
-	"replace(replace(cast(regexp_matches(mensaje,'([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})') as text),'{',''),'}','') as ip,"+
-	"regexp_replace(mensaje, 'for.*','' ) as cadena_conex"+
-	"from secure where proceso_id = 'sshd'"+
-	") ssh "+
-	"group by id_conexion, ip,cadena_conex"+
-	"union"+
-	"select count(*) as nconex,"+
-	"id_conexion,"+
-	"ip,"+
-	"cadena_conex "+
-	"from ("+
-	"select"+
-	"replace(replace( cast(regexp_matches(mensaje,'for.*on') as text),'{\"for ',''),' on\"}','') as id_conexion,"+
-	"cast('' as text)  as ip,"+
-	"replace(replace(cast(regexp_matches(mensaje,'(''[a-z| ]+'' [a-z]+)') as text),'{\"',''),'\"}','') as cadena_conex"+
-	"from secure"+
-	") su"+
-	"group by "+
-	"id_conexion,"+
-	"ip,"+
-	"cadena_conex"+
-    ") lb";
+            "/* new versiom sql punto 3******/ "+
+            "select nconex,id_conexion,ip,cadena_conex, "+
+            "(select cn from ip i "+
+            "inner join entidad e on i.samaccountname = e.samaccountname "+
+            "where i.ip = lb.ip limit 1) as nombre, "+
+            " (select description from ip i "+
+            "inner join entidad e on i.samaccountname = e.samaccountname "+
+            "where i.ip = lb.ip limit 1) as description, "+
+            " (select department from ip i  "+
+            "inner join entidad e on i.samaccountname = e.samaccountname "+
+            "where i.ip = lb.ip limit 1) as area "+
+            "from ( "+
+	        "/*shh*/ "+
+	        "select "+
+	        "count(*) as nconex, "+
+	        "id_conexion, "+
+	        "ip,cadena_conex from ( "+
+	        "select mensaje, "+
+        	"replace(replace(cast(regexp_matches(mensaje,'for.*from') as text),'{\"for ',''),' from\"}','') as id_conexion, "+
+	        "replace(replace(cast(regexp_matches(mensaje,'([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})') as text),'{',''),'}','') as ip, "+
+	        "regexp_replace(mensaje, 'for.*','' ) as cadena_conex "+
+	        "from secure where proceso_id = 'sshd' "+
+	        ") ssh "+
+	        "group by id_conexion, ip,cadena_conex "+
+	        "union "+
+	        "select count(*) as nconex, "+
+	        "id_conexion, "+
+	        "ip, "+
+	        "cadena_conex "+
+	        "from ( "+
+	        "select "+
+	        "replace(replace( cast(regexp_matches(mensaje,'for.*on') as text),'{\"for ',''),' on\"}','') as id_conexion, "+
+	        "cast('' as text)  as ip, "+
+	        "replace(replace(cast(regexp_matches(mensaje,'(''[a-z| ]+'' [a-z]+)') as text),'{\"',''),'\"}','') as cadena_conex "+
+	        "from secure "+  
+	        ") su "+
+	        "group by "+
+	        "id_conexion, "+
+	        "ip, "+
+	        "cadena_conex "+
+            ") lb";
 
             return rpts;
         }

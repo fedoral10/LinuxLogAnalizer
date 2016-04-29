@@ -37,6 +37,7 @@ namespace LinuxLogAnalizer
                 if (arreglo.Length == 7)
                 {
                     retorno = new Dominio.Passwd();
+                    retorno.revision = commons.Revision_Actual;
                     retorno.usuario = arreglo[0];
                     retorno.password = arreglo[1];
                     retorno.uid = int.Parse(arreglo[2]);

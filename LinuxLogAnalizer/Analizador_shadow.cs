@@ -31,6 +31,7 @@ namespace LinuxLogAnalizer
             Dominio.Shadow retorno = new Dominio.Shadow();
 
             string[] arreglo = line.Split(':');
+            retorno.revision = commons.Revision_Actual;
             retorno.usuario = arreglo[0];
             retorno.password = arreglo[1];
             retorno.lastPasswordChanged = string.IsNullOrEmpty(arreglo[2])?0: int.Parse(arreglo[2]);

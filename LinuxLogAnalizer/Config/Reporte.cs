@@ -9,6 +9,10 @@ namespace LinuxLogAnalizer.Config
     public class Reporte
     {
         public string Nombre { get; set; }
-        public string SQL { get; set; } 
+        public string SQL { get; set; }
+        public override string ToString()
+        {
+            return this.Nombre;
+        }
     }
 }

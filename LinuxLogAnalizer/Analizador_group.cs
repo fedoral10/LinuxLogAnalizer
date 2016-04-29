@@ -32,6 +32,7 @@ namespace LinuxLogAnalizer
             Dominio.Group retorno = new Dominio.Group();
 
             string[] arreglo = linea.Split(':');
+            retorno.revision = commons.Revision_Actual;
             retorno.groupName = arreglo[0];
             retorno.password = arreglo[1];
             retorno.gid = int.Parse(arreglo[2]);
