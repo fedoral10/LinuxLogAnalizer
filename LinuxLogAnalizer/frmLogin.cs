@@ -76,6 +76,8 @@ namespace LinuxLogAnalizer
 
                         repo.Insertar<Dominio.Revision>(rev);
                         commons.Revision_Actual = rev;
+
+                       
                     }
                     else
                     { 
@@ -94,7 +96,9 @@ namespace LinuxLogAnalizer
                     }
 
                     writeConfigOfGUI();
+
                     /*Prueba de conexion*/
+
                     this.Visible = false;
 
                     frmMain i = new frmMain();

@@ -33,6 +33,11 @@
             this.btnSecure = new System.Windows.Forms.Button();
             this.btnGroup = new System.Windows.Forms.Button();
             this.btnLastb = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbTabla = new System.Windows.Forms.ComboBox();
+            this.btnClearTable = new System.Windows.Forms.Button();
+            this.btnClearAllTables = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPasswd
@@ -100,10 +105,52 @@
             this.btnLastb.UseVisualStyleBackColor = true;
             this.btnLastb.Click += new System.EventHandler(this.btnLastb_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnClearAllTables);
+            this.groupBox1.Controls.Add(this.btnClearTable);
+            this.groupBox1.Controls.Add(this.cmbTabla);
+            this.groupBox1.Location = new System.Drawing.Point(3, 155);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(373, 105);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Limpiar Tablas";
+            // 
+            // cmbTabla
+            // 
+            this.cmbTabla.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTabla.FormattingEnabled = true;
+            this.cmbTabla.Location = new System.Drawing.Point(16, 19);
+            this.cmbTabla.Name = "cmbTabla";
+            this.cmbTabla.Size = new System.Drawing.Size(153, 21);
+            this.cmbTabla.TabIndex = 0;
+            // 
+            // btnClearTable
+            // 
+            this.btnClearTable.Location = new System.Drawing.Point(175, 19);
+            this.btnClearTable.Name = "btnClearTable";
+            this.btnClearTable.Size = new System.Drawing.Size(75, 23);
+            this.btnClearTable.TabIndex = 1;
+            this.btnClearTable.Text = "Vaciar Tabla";
+            this.btnClearTable.UseVisualStyleBackColor = true;
+            this.btnClearTable.Click += new System.EventHandler(this.btnClearTable_Click);
+            // 
+            // btnClearAllTables
+            // 
+            this.btnClearAllTables.Location = new System.Drawing.Point(16, 76);
+            this.btnClearAllTables.Name = "btnClearAllTables";
+            this.btnClearAllTables.Size = new System.Drawing.Size(153, 23);
+            this.btnClearAllTables.TabIndex = 2;
+            this.btnClearAllTables.Text = "Vaciar Todas las Tablas";
+            this.btnClearAllTables.UseVisualStyleBackColor = true;
+            this.btnClearAllTables.Click += new System.EventHandler(this.btnClearAllTables_Click);
+            // 
             // panelArchLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLastb);
             this.Controls.Add(this.btnGroup);
             this.Controls.Add(this.btnSecure);
@@ -111,6 +158,7 @@
             this.Controls.Add(this.btnPasswd);
             this.Name = "panelArchLogs";
             this.Size = new System.Drawing.Size(384, 275);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -122,5 +170,9 @@
         private System.Windows.Forms.Button btnSecure;
         private System.Windows.Forms.Button btnGroup;
         private System.Windows.Forms.Button btnLastb;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnClearAllTables;
+        private System.Windows.Forms.Button btnClearTable;
+        private System.Windows.Forms.ComboBox cmbTabla;
     }
 }

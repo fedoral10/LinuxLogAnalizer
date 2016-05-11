@@ -160,6 +160,43 @@ namespace LinuxLogAnalizer
 
             return rows;
         }
+
+        public List<System.Type> getEntidades()
+        {
+            List<System.Type> clases = null;
+            var metaData = NHelper.GetCurrentSession().SessionFactory.GetAllClassMetadata();
+            if (metaData != null && metaData.Count> 0)
+            {
+                clases = new List<Type>();
+                foreach (var x in metaData)
+                {
+                    var y = x.Value;
+                    Type xy;
+                    clases.Add(xy = y.GetMappedClass(EntityMode.Poco));
+                }
+            }
+            return clases;
+        }
+        public List<string> getEntidadesNombre()
+        {
+            List<string> tablas = null;
+
+            var metaData = NHelper.GetCurrentSession().SessionFactory.GetAllClassMetadata();
+
+            if (metaData != null)
+            {
+                tablas = new List<string>();
+                foreach (var x in metaData)
+                {
+                    var usrm = x.Value as NHibernate.Persister.Entity.AbstractEntityPersister;
+                    //var cols = usrm.KeyColumnNames;
+                    string table = usrm.TableName;
+                    tablas.Add(table);
+                }
+            }
+            return tablas;
+        }
+
         #endregion
         
     }

@@ -17,6 +17,7 @@ namespace LinuxLogAnalizer
         [STAThread]
         static void Main()
         {
+
             try
             {
                 log4net.Config.XmlConfigurator.Configure();

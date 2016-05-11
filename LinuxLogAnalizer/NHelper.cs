@@ -70,8 +70,6 @@ namespace LinuxLogAnalizer
                     SessionFactory.Close();
             }
 
-
-
             private static ISessionFactory _sessionFactory;
             //private static ISession _sesion;
             private static ISessionFactory SessionFactory
@@ -98,6 +96,7 @@ namespace LinuxLogAnalizer
                         //configuration.AddAssembly(typeof(EntidadAplicacion).Assembly);
                         configuration.AddAssembly(typeof(Dominio.Group).Assembly);
                         _sessionFactory = configuration.BuildSessionFactory();
+                        
                         ExportarEsquema(configuration);
                     }
                     return _sessionFactory;
